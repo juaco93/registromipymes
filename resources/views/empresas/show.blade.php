@@ -1,0 +1,1 @@
+{{$empresa->nombreFantasia}}

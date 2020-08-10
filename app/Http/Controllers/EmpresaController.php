@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Empresa;
+use App\EmpresaSector;
+use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller
 {
@@ -26,12 +28,24 @@ class EmpresaController extends Controller
 
     public function registro()
     {
-        return view('empresas.registro');
+        $sectores =  DB::table('empresa_sectores')->get();
+        $categoriasMonotributo = DB::table('afip_categoria_monotributos')->get();
+        return view('empresas.registro', [
+            'afip_categoria_monotributos' => $categoriasMonotributo,
+            'sectores' => $sectores
+        ]);
     }
 
     public function store()
     {
-        //dd(request()->all());
+
+        $this->validate(request(),[
+            'nombreFantasia' => 'required|max:10',
+            'razon_social' => 'required'
+        ]
+        );
+
+        dd(request()->all());
 
         Empresa::create(request()->all());
 

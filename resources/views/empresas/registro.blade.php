@@ -6,8 +6,8 @@
     <form id="createMemberForm" data-ajax="false" method="POST" action="/empresas" enctype="multipart/form-data" class="form-horizontal">
         {{ csrf_field() }}
         <div class="modal-body">
-            <div class="messages"></div>
-            <h2 class="col-sm-8 control-label">Datos generales</h2>
+           @include('layouts.errors')
+           <h2 class="col-sm-8 control-label">Datos generales</h2>
             <div class="form-group">
                 <label for="nombreFantasia" class="col-sm-4 control-label">Nombre de Fantasía: </label>
                 <div class="col-sm-10">
@@ -113,14 +113,9 @@
                             Categoría de Monotributo:
                           </label>
                         <select class="form-control" name="monotributoCategoria" id="monotributoCategoria">
-                            <option value="-">-</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="E">E</option>
-                            <option value="F">F</option>
-                            <option value="G">G</option>
+                            @foreach ($afip_categoria_monotributos as $categoria)
+                                <option value={{$categoria->id}}>{{$categoria->descripcion}}</option>
+                            @endforeach
                         </select>
                   </div>
               </fieldset>
@@ -134,7 +129,10 @@
               <label for="sector" class="col-sm-4 control-label">Sector:</label>
               <div class="col-sm-10">
                 <select class="form-control" name="sector" id="sector">
-                  <?php
+                    @foreach ($sectores as $sector)
+                        <option value={{$sector->id}}>{{$sector->descripcion}}</option>
+                    @endforeach
+              <?php
                   /*
                       require_once '../php_action/db_connect.php';
                         $sql = "SELECT * FROM empresa_sector ORDER BY idempresa_sector ASC";

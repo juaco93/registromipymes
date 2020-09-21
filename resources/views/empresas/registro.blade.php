@@ -84,7 +84,7 @@
             <div class="form-group">
               <label for="cuit" class="col-sm-4 control-label">Nº de CUIT: </label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="cuit" name="cuit" placeholder="CUIT" maxlength="11">
+                <input type="text" class="form-control" id="cuit" name="cuit" placeholder="CUIT" maxlength="13">
               </div>
             </div>
             <div class="form-group">

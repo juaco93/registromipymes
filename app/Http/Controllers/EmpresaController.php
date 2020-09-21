@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Empresa;
 use App\EmpresaSector;
+use App\Http\Requests\EmpresaStoreRequest;
+use App\Rules\CUITValido;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class EmpresaController extends Controller
 {
@@ -28,6 +31,7 @@ class EmpresaController extends Controller
 
     public function registro()
     {
+        Log::debug('Entrando a la seccion de registro');
         $sectores =  DB::table('empresa_sectores')->get();
         $categoriasMonotributo = DB::table('afip_categoria_monotributos')->get();
         return view('empresas.registro', [
@@ -36,14 +40,11 @@ class EmpresaController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(EmpresaStoreRequest $request)
     {
 
-        $this->validate(request(),[
-            'nombreFantasia' => 'required|max:10',
-            'razon_social' => 'required'
-        ]
-        );
+
+        //$validated = $request->validated();
 
         dd(request()->all());
 

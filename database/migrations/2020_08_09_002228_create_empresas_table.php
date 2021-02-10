@@ -14,33 +14,99 @@ class CreateEmpresasTable extends Migration
     public function up()
     {
         Schema::create('empresas', function (Blueprint $table) {
+
+            // PASO 1 - DATOS FISCALES
             $table->id();
-            $table->integer('idsector');
-            $table->integer('idcategoria');
-            $table->integer('idTipoEmpresa');
-            $table->integer('idDepartamento');
-            $table->integer('idLocalidad');
-            $table->integer('idEmpresaTipoSociedad');
             $table->string('cuit');
-            $table->string('nombreFantasia');
+            $table->string('titularApellido');
+            $table->string('titularNombre');
+            $table->string('titularDNI');
+            $table->string('titularSexo');
+            $table->string('titularCalle');
+            $table->string('titularNumero');
+            $table->string('titularPiso');
+            $table->string('titularDepto');
+            $table->string('titularTelefonoPersonal');
+            $table->string('titularTelefonoEmpresa');
+            $table->string('titularLocalidad');
+            $table->string('titularCodigoPostal');
+            $table->string('inscripcionAFIP');
             $table->string('numeroIngresosBrutos');
-            $table->float('facturacion');
-            $table->date('inicioActividad');
-            $table->string('actividadPrincipal');
-            $table->string('domicilioFiscal');
-            $table->string('domicilioActividad');
-            $table->string('responsable');
-            $table->string('responsableDni');
-            $table->string('razonSocial');
-            $table->string('telefono');
-            $table->string('email');
-            $table->integer('idAfipCategoriaMonotributo');
-            $table->float('superficieTotal');
-            $table->integer('personalCantidad');
-            $table->boolean('exporta');
-            $table->text('observaciones');
-            $table->text('necesidades');
+            $table->date('fechaInicioActividad');
+
+            // PASO 2 - DOMICILIOS
+            $table->string('domicilioLegalCalle');
+            $table->string('domicilioLegalNumero');
+            $table->string('domicilioLegalPiso');
+            $table->string('domicilioLegalDepto');
+            $table->string('domicilioLegalTelefono');
+            $table->string('domicilioLegalLocalidad');
+            $table->integer('domicilioLegalCodigoPostal');
+
+            $table->string('domicilioActividadCalle');
+            $table->string('domicilioActividadNumero');
+            $table->string('domicilioActividadPiso');
+            $table->string('domicilioActividadDepto');
+            $table->string('domicilioActividadTelefono');
+            $table->string('domicilioActividadLocalidad');
+            $table->integer('domicilioActividadCodigoPostal');
+            $table->string('domicilioActividadEmail');
+
+            $table->string('domicilioContactoApellido');
+            $table->string('domicilioContactoNombre');
+            $table->string('domicilioContactoCargoEnLaEmpresa');
+            $table->string('domicilioContactoTelefono');
+            $table->string('domicilioContactoDomicilioElectronico');
+            $table->string('domicilioContactoEmailAlternativo');
+
+
+            // PASO 3 - CARACTERISTICAS DE LA ACTIVIDAD
+            $table->string('sector');
+            $table->string('rubro');
+            $table->boolean('actividadFuentePrincipalIngresosSioNo');
+            $table->integer('actividadFuentePrincipalIngresosPorcentaje');
+            $table->string('actividadAQuienVende');
+            $table->string('actividadClientesPaganCon');
+            $table->string('actividadProveedoresDe');
+            $table->string('actividadProveedoresDePorQue');
+
+            // PASO 4 - INGRESOS Y GASTOS DE LA ACTIVIDAD
+            $table->string('ingresosPromedioVentas');
+            $table->boolean('inscriptoRegistroNacional');
+            $table->string('espacioActividad');
+            $table->float('montoAlquileres');
+            $table->integer('cantidadPersonasFamiliares');
+            $table->integer('cantidadPersonasRegistrados');
+            $table->integer('cantidadPersonasNoRegistrados');
+            $table->integer('cantidadPersonasTotal');
+            $table->integer('cantidadPersonasPasantias');
+            $table->integer('cantidadPersonasProgramas');
+            $table->integer('cantidadPersonasMujeres');
+            $table->integer('cantidadPersonasHombres');
+            $table->float('promedioKWH');
+
+
+            // PASO 5 - FINANCIAMIENTO
+            $table->boolean('prestamosHaRecibidoSioNo');
+            $table->string('prestamosEntidadFinanciera');
+            $table->string('prestamosDestinoDeFondos');
+            $table->string('prestamosRazonDelNoPrestamo');
+            $table->boolean('prestamosTieneAlgunoActualmenteSioNo');
+            $table->string('prestamosMediosDeInformacion');
+
+
+            // PASO 6 - REALIDAD Y EXPECTATIVAS
+            $table->string('medidasDeApoyo');
+            $table->string('rendimientoNegocio');
+            $table->string('comoAfectoLaPandemia');
+            $table->string('expectativaTresAnios');
+            $table->boolean('exportaSioNo');
+            $table->boolean('exportaProximos12MesesSioNo');
+            $table->boolean('exportaLeInteresaProfundizar');
+
+            // Extras
             $table->boolean('certificado');
+            $table->date('certificadoVencimiento');
         });
     }
 

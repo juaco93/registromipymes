@@ -8,6 +8,7 @@ use App\Http\Requests\EmpresaStoreRequest;
 use App\Rules\CUITValido;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
 {
@@ -34,11 +35,99 @@ class EmpresaController extends Controller
         Log::debug('Entrando a la seccion de registro');
         $sectores =  DB::table('empresa_sectores')->get();
         $categoriasMonotributo = DB::table('afip_categoria_monotributos')->get();
+
         return view('empresas.registro', [
             'afip_categoria_monotributos' => $categoriasMonotributo,
             'sectores' => $sectores
         ]);
     }
+
+
+    public function createStep1(Request $request)
+    {
+        $empresa = $request->session()->get('empresa');
+
+        return view('empresas.registro.paso1',compact('empresa'));
+    }
+
+    public function PostcreateStep1(Request $request)
+    {
+        // VALIDACIONES
+        $validatedData = $request->validate([
+            'titularNombre' => 'required',
+        ]);
+
+        // Primera vez que entramos al paso, NO está creado el objeto Empresa
+        if(empty($request->session()->get('empresa'))){
+            $empresa = new Empresa();
+            $empresa->fill($validatedData);
+            $request->session()->put('empresa', $empresa);
+
+        // Si estamos volviendo a este paso y ya está creado el objeto Empresa
+        }else{
+            $empresa = $request->session()->get('empresa');
+            $empresa->fill($validatedData);
+            $request->session()->put('empresa', $empresa);
+        }
+
+        return redirect('/registro2');
+    }
+
+    public function createStep2(Request $request)
+    {
+        $empresa = $request->session()->get('empresa');
+
+        return view('empresas.registro.paso2',compact('empresa'));
+    }
+
+    public function PostcreateStep2(Request $request)
+    {
+        /* VALIDACIONES
+        $validatedData = $request->validate([
+            'description' => 'required|unique:registers',
+        ]);
+        if(empty($request->session()->get('register'))){
+            $register = new \App\Register();
+            $register->fill($validatedData);
+            $request->session()->put('register', $register);
+        }else{
+            $register = $request->session()->get('register');
+            $register->fill($validatedData);
+            $request->session()->put('register', $register);
+        }*/
+        //return redirect('/registro3');
+        $empresa = $request->session()->get('empresa');
+
+        return view('empresas.registro.paso2',compact('empresa'));
+    }
+
+    public function createStep3(Request $request)
+    {
+        $register = $request->session()->get('register');
+
+        return view('empresas.registro.paso3',compact('register'));
+    }
+
+    public function PostcreateStep3(Request $request)
+    {
+        /* VALIDACIONES
+        $validatedData = $request->validate([
+            'description' => 'required|unique:registers',
+        ]);
+        if(empty($request->session()->get('register'))){
+            $register = new \App\Register();
+            $register->fill($validatedData);
+            $request->session()->put('register', $register);
+        }else{
+            $register = $request->session()->get('register');
+            $register->fill($validatedData);
+            $request->session()->put('register', $register);
+        }*/
+        return redirect('/registro4');
+    }
+
+
+
 
     public function store(EmpresaStoreRequest $request)
     {

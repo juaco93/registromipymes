@@ -10,9 +10,10 @@
         </ul>
     </div>
     @endif
+    <h2>Por favor, indicanos tu CUIT:</h2>
      <form action="/registro" method="POST">
         @csrf
-     <input type="text" name="titularNombre" class="form-controll" placeholder="Ingrese nombre" value="{{ session()->get('empresa.titularNombre') }}">
-         <button type="submit" class="btn btn-primary">Continuar</button>
+     <input type="text" name="cuit" class="form-controll" placeholder="Ingrese CUIT" value="{{ session()->get('empresa.cuit') }}">
+     <button type="submit" class="btn btn-primary">Continuar</button>
      </form>
 @endsection

@@ -54,7 +54,7 @@ class EmpresaController extends Controller
     {
         // VALIDACIONES
         $validatedData = $request->validate([
-            'titularNombre' => 'required',
+            'cuit' => 'required',
         ]);
 
         // Primera vez que entramos al paso, NO está creado el objeto Empresa
@@ -82,23 +82,33 @@ class EmpresaController extends Controller
 
     public function PostcreateStep2(Request $request)
     {
-        /* VALIDACIONES
+        /* VALIDACIONES */
         $validatedData = $request->validate([
-            'description' => 'required|unique:registers',
+            'titularApellido'  => 'required',
+            'titularNombre'  => 'required',
+            'titularDNI'  => 'required',
+            'titularSexo'  => 'required',
+            'titularCalle'  => 'required',
+            'titularNumero'  => 'required',
+            'titularTelefonoPersonal'  => 'required',
+            'titularTelefonoEmpresa'  => 'required',
+            'titularLocalidad' => 'required',
+            'titularCodigoPostal' => 'required',
+            'inscripcionAFIP' => 'required',
+            'numeroIngresosBrutos' => 'required'
         ]);
-        if(empty($request->session()->get('register'))){
-            $register = new \App\Register();
-            $register->fill($validatedData);
-            $request->session()->put('register', $register);
+        if(empty($request->session()->get('empresa'))){
+            $empresa = new Empresa();
+            $empresa->fill($validatedData);
+            $empresa->session()->put('empresa', $empresa);
         }else{
-            $register = $request->session()->get('register');
-            $register->fill($validatedData);
-            $request->session()->put('register', $register);
-        }*/
-        //return redirect('/registro3');
-        $empresa = $request->session()->get('empresa');
+            $empresa = $request->session()->get('empresa');
+            $empresa->fill($validatedData);
+            $empresa->session()->put('empresa', $empresa);
+        }
+        return redirect('/registro3');
 
-        return view('empresas.registro.paso2',compact('empresa'));
+        //return view('empresas.registro.paso2',compact('empresa'));
     }
 
     public function createStep3(Request $request)
@@ -124,6 +134,13 @@ class EmpresaController extends Controller
             $request->session()->put('register', $register);
         }*/
         return redirect('/registro4');
+    }
+
+    public function createStep4(Request $request)
+    {
+        $empresa = $request->session()->get('empresa');
+
+        return view('empresas.registro.paso3',compact('empresa'));
     }
 
 

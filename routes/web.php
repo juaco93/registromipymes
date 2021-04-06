@@ -23,8 +23,3 @@ Route::get('/registro5', 'EmpresaController@createStep5');
 Route::post('/registro5', 'EmpresaController@PostcreateStep5');
 Route::get('/registro6', 'EmpresaController@createStep6');
 Route::post('/registro6', 'EmpresaController@PostcreateStep6');
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});

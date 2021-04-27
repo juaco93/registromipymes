@@ -16,7 +16,7 @@ class CreateAfipCategoriaMonotributosTable extends Migration
         Schema::create('afip_categoria_monotributos', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->integer('ingresosBrutosHasta');
+            $table->decimal('ingresosBrutosHasta', $precision = 9, $scale = 2);
             $table->timestamps();
         });
     }

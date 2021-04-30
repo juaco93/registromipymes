@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <h1>Paso 1</h1>
+    <h1>Seccion A: Datos generales - Paso 1</h1>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

@@ -76,8 +76,9 @@ class EmpresaController extends Controller
     public function createStep2(Request $request)
     {
         $empresa = $request->session()->get('empresa');
+        $categoriasMonotributo = DB::table('afip_categoria_monotributos')->get();
 
-        return view('empresas.registro.paso2',compact('empresa'));
+        return view('empresas.registro.paso2',compact('empresa','categoriasMonotributo'));
     }
 
     public function PostcreateStep2(Request $request)

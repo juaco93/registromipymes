@@ -86,23 +86,24 @@ class EmpresaController extends Controller
     {
         /* VALIDACIONES */
         $validatedData = $request->validate([
-            'titularApellido'  => 'required',
-            'titularNombre'  => 'required',
-            'titularDNI'  => 'required',
+            'titularApellido'  => 'required|string',
+            'titularNombre'  => 'required|string',
+            'titularDNI'  => 'required|numeric|min:1000000',
             'titularSexo'  => 'required',
-            'titularCalle'  => 'required',
-            'titularNumero'  => 'required',
-            'titularPiso'  => 'required',
-            'titularDepto'  => 'required',
-            'titularTelefonoPersonal'  => 'required',
-            'titularTelefonoEmpresa'  => 'required',
-            'titularLocalidad' => 'required',
-            'titularCodigoPostal' => 'required',
+            'titularCalle'  => 'required|string',
+            'titularNumero'  => 'required|numeric|min:1',
+            'titularPiso'  => 'nullable|numeric|min:1',
+            'titularDepto'  => 'nullable|string',
+            'titularTelefonoPersonal'  => 'required|numeric|min:1000000',
+            'titularTelefonoEmpresa'  => 'required|numeric|min:1000000',
+            'titularLocalidad' => 'required|string',
+            'titularCodigoPostal' => 'required|numeric|min:1',
             'inscripcionAfip' => 'required',
-            'fechaInicioActividad' => 'required',
-            'numeroIngresosBrutos' => 'required',
+            'categoriaMonotributo' => 'required_if:inscripcionAfip,monotributo',
+            'fechaInicioActividad' => 'required|date',
+            'numeroIngresosBrutos' => 'required|numeric|min:1',
 
-            'domicilioLegalCalle' => 'required',
+            /* 'domicilioLegalCalle' => 'required',
             'domicilioLegalNumero' => 'required',
             'domicilioLegalPiso' => 'required',
             'domicilioLegalDepto' => 'required',
@@ -124,7 +125,7 @@ class EmpresaController extends Controller
             'domicilioContactoCargoEnLaEmpresa' => 'required',
             'domicilioContactoTelefono' => 'required',
             'domicilioContactoDomicilioElectronico' => 'required',
-            'domicilioContactoEmailAlternativo' => 'required'
+            'domicilioContactoEmailAlternativo' => 'required' */
 
         ]);
         if(empty($request->session()->get('empresa'))){

@@ -24,8 +24,8 @@ class CreateEmpresasTable extends Migration
             $table->string('titularSexo');
             $table->string('titularCalle');
             $table->string('titularNumero');
-            $table->string('titularPiso');
-            $table->string('titularDepto');
+            $table->string('titularPiso')->nullable();
+            $table->string('titularDepto')->nullable();
             $table->string('titularTelefonoPersonal');
             $table->string('titularTelefonoEmpresa');
             $table->string('titularLocalidad');

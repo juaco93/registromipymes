@@ -12,7 +12,8 @@
     @endif
      <form action="/registro4" method="POST">
         @csrf
-     <input type="text" name="name" class="form-controll" placeholder="Ingrese nombre" value="{{ session()->get('registro.nombre') }}">
-         <button type="submit" class="btn btn-primary">Continuar</button>
+            <input type="text" name="name" class="form-controll" placeholder="Ingrese nombre" value="{{ session()->get('registro.nombre') }}">
+            <a type="button" href="/registro2" class="btn btn-warning">Vuelta al paso 2</a>
+            <button type="submit" class="btn btn-primary">Continuar</button>
      </form>
 @endsection

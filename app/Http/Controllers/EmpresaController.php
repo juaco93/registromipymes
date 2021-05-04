@@ -77,8 +77,9 @@ class EmpresaController extends Controller
     {
         $empresa = $request->session()->get('empresa');
         $categoriasMonotributo = DB::table('afip_categoria_monotributos')->get();
+        $generos = [1 => 'Hombre', 2 => 'Mujer', 3 => 'No Binario'];
 
-        return view('empresas.registro.paso2',compact('empresa','categoriasMonotributo'));
+        return view('empresas.registro.paso2',compact('empresa','categoriasMonotributo', 'generos'));
     }
 
     public function PostcreateStep2(Request $request)
@@ -91,21 +92,49 @@ class EmpresaController extends Controller
             'titularSexo'  => 'required',
             'titularCalle'  => 'required',
             'titularNumero'  => 'required',
+            'titularPiso'  => 'required',
+            'titularDepto'  => 'required',
             'titularTelefonoPersonal'  => 'required',
             'titularTelefonoEmpresa'  => 'required',
             'titularLocalidad' => 'required',
             'titularCodigoPostal' => 'required',
-            'inscripcionAFIP' => 'required',
-            'numeroIngresosBrutos' => 'required'
+            'inscripcionAfip' => 'required',
+            'fechaInicioActividad' => 'required',
+            'numeroIngresosBrutos' => 'required',
+
+            'domicilioLegalCalle' => 'required',
+            'domicilioLegalNumero' => 'required',
+            'domicilioLegalPiso' => 'required',
+            'domicilioLegalDepto' => 'required',
+            'domicilioLegalTelefono' => 'required',
+            'domicilioLegalLocalidad' => 'required',
+            'domicilioLegalCodigoPostal' => 'required',
+
+            'domicilioActividadCalle' => 'required',
+            'domicilioActividadNumero' => 'required',
+            'domicilioActividadPiso' => 'required',
+            'domicilioActividadDepto' => 'required',
+            'domicilioActividadTelefono' => 'required',
+            'domicilioActividadLocalidad' => 'required',
+            'domicilioActividadCodigoPostal' => 'required',
+            'domicilioActividadEmail' => 'required',
+
+            'domicilioContactoApellido' => 'required',
+            'domicilioContactoNombre' => 'required',
+            'domicilioContactoCargoEnLaEmpresa' => 'required',
+            'domicilioContactoTelefono' => 'required',
+            'domicilioContactoDomicilioElectronico' => 'required',
+            'domicilioContactoEmailAlternativo' => 'required'
+
         ]);
         if(empty($request->session()->get('empresa'))){
             $empresa = new Empresa();
             $empresa->fill($validatedData);
-            $empresa->session()->put('empresa', $empresa);
+            $request->session()->put('empresa', $empresa);
         }else{
             $empresa = $request->session()->get('empresa');
             $empresa->fill($validatedData);
-            $empresa->session()->put('empresa', $empresa);
+            $request->session()->put('empresa', $empresa);
         }
         return redirect('/registro3');
 

@@ -77,32 +77,37 @@ class EmpresaController extends Controller
     {
         $empresa = $request->session()->get('empresa');
         $categoriasMonotributo = DB::table('afip_categoria_monotributos')->get();
+        $codigosActividades = DB::table('empresa_codigo_actividades')->get();
         $generos = [1 => 'Hombre', 2 => 'Mujer', 3 => 'No Binario'];
 
-        return view('empresas.registro.paso2',compact('empresa','categoriasMonotributo', 'generos'));
+        return view('empresas.registro.paso2',compact('empresa','categoriasMonotributo', 'generos', 'codigosActividades'));
     }
 
     public function PostcreateStep2(Request $request)
     {
         /* VALIDACIONES */
         $validatedData = $request->validate([
-            'titularApellido'  => 'required',
-            'titularNombre'  => 'required',
-            'titularDNI'  => 'required',
+            'titularApellido'  => 'required|string',
+            'titularNombre'  => 'required|string',
+            'titularDNI'  => 'required|numeric|min:1000000',
             'titularSexo'  => 'required',
-            'titularCalle'  => 'required',
-            'titularNumero'  => 'required',
-            'titularPiso'  => 'required',
-            'titularDepto'  => 'required',
-            'titularTelefonoPersonal'  => 'required',
-            'titularTelefonoEmpresa'  => 'required',
-            'titularLocalidad' => 'required',
-            'titularCodigoPostal' => 'required',
+            'titularCalle'  => 'required|string',
+            'titularNumero'  => 'required|numeric|min:1',
+            'titularPiso'  => 'nullable|numeric|min:1',
+            'titularDepto'  => 'nullable|string',
+            'titularTelefonoPersonal'  => 'required|numeric|min:1000000',
+            'titularTelefonoEmpresa'  => 'required|numeric|min:1000000',
+            'titularLocalidad' => 'required|string',
+            'titularCodigoPostal' => 'required|numeric|min:1',
             'inscripcionAfip' => 'required',
-            'fechaInicioActividad' => 'required',
-            'numeroIngresosBrutos' => 'required',
+            'categoriaMonotributo' => 'required_if:inscripcionAfip,monotributo',
+            'fechaInicioActividad' => 'required|date',
+            'codigoActividadPrincipal' => 'required',
+            'codigoActividadSecundaria' => 'nullable',
+            'codigoActividadTerciaria' => 'nullable',
+            'numeroIngresosBrutos' => 'required|numeric|min:1',
 
-            'domicilioLegalCalle' => 'required',
+            /* 'domicilioLegalCalle' => 'required',
             'domicilioLegalNumero' => 'required',
             'domicilioLegalPiso' => 'required',
             'domicilioLegalDepto' => 'required',
@@ -124,7 +129,7 @@ class EmpresaController extends Controller
             'domicilioContactoCargoEnLaEmpresa' => 'required',
             'domicilioContactoTelefono' => 'required',
             'domicilioContactoDomicilioElectronico' => 'required',
-            'domicilioContactoEmailAlternativo' => 'required'
+            'domicilioContactoEmailAlternativo' => 'required' */
 
         ]);
         if(empty($request->session()->get('empresa'))){

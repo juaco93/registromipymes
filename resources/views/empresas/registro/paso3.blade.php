@@ -16,4 +16,5 @@
             <a type="button" href="/registro2" class="btn btn-warning">Vuelta al paso 2</a>
             <button type="submit" class="btn btn-primary">Continuar</button>
      </form>
+     <div id="map"></div>
 @endsection

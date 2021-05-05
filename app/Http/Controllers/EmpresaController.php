@@ -77,9 +77,10 @@ class EmpresaController extends Controller
     {
         $empresa = $request->session()->get('empresa');
         $categoriasMonotributo = DB::table('afip_categoria_monotributos')->get();
+        $codigosActividades = DB::table('empresa_codigo_actividades')->get();
         $generos = [1 => 'Hombre', 2 => 'Mujer', 3 => 'No Binario'];
 
-        return view('empresas.registro.paso2',compact('empresa','categoriasMonotributo', 'generos'));
+        return view('empresas.registro.paso2',compact('empresa','categoriasMonotributo', 'generos', 'codigosActividades'));
     }
 
     public function PostcreateStep2(Request $request)

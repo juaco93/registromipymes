@@ -80,7 +80,49 @@
                 <input class="form-control" type="date" value="{{ session()->get('empresa.fechaInicioActividad')}}" name="fechaInicioActividad"><br>
             </div>
         {{-- </div> --}}
-        <input type="text" name="numeroIngresosBrutos" class="form-control" placeholder="Numero de Ingresos Brutos" maxlength="9" value="{{ session()->get('empresa.numeroIngresosBrutos') }}">
+        <fieldset class="form-group">
+            <label class="form-check-label" for="codigoActividadPrincipal">
+                Codigo de Actividad Principal (*):
+            </label>
+            <select class="form-control" name="codigoActividadPrincipal" id="codigoActividadPrincipal">
+                <option value="" selected disabled>Elija una actividad principal</option>
+                @foreach ($codigosActividades as $actividad)
+                    @if(session()->get('empresa.codigoActividadPrincipal') == $actividad->id)
+                        <option value={{$actividad->id}} selected>{{$actividad->descripcion}}</option>
+                    @else
+                        <option value={{$actividad->id}}>{{$actividad->descripcion}}</option>
+                    @endif
+                @endforeach
+            </select><br>
+            <label class="form-check-label" for="codigoActividadSecundaria">
+                Codigo de Actividad Secundario:
+            </label>
+            <select class="form-control" name="codigoActividadSecundaria" id="codigoActividadSecundaria">
+                <option value="" selected>Ninguna</option>
+                @foreach ($codigosActividades as $actividad)
+                    @if(session()->get('empresa.codigoActividadSecundaria') == $actividad->id)
+                        <option value={{$actividad->id}} selected>{{$actividad->descripcion}}</option>
+                    @else
+                        <option value={{$actividad->id}}>{{$actividad->descripcion}}</option>
+                    @endif
+                @endforeach
+            </select><br>
+            <label class="form-check-label" for="codigoActividadTerciaria">
+                Categoría de Actividad Terciario:
+            </label>
+            <select class="form-control" name="codigoActividadTerciaria" id="codigoActividadTerciaria">
+                <option value="" selected>Ninguna</option>
+                @foreach ($codigosActividades as $actividad)
+                    @if(session()->get('empresa.codigoActividadTerciaria') == $actividad->id)
+                        <option value={{$actividad->id}} selected>{{$actividad->descripcion}}</option>
+                    @else
+                        <option value={{$actividad->id}}>{{$actividad->descripcion}}</option>
+                    @endif
+                @endforeach
+            </select>
+        </fieldset>
+
+        <input type="text" name="numeroIngresosBrutos" class="form-control" placeholder="Numero de Ingresos Brutos (*)" maxlength="9" value="{{ session()->get('empresa.numeroIngresosBrutos') }}"><br>
 
         <hr>
 

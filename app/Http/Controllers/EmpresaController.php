@@ -102,6 +102,9 @@ class EmpresaController extends Controller
             'inscripcionAfip' => 'required',
             'categoriaMonotributo' => 'required_if:inscripcionAfip,monotributo',
             'fechaInicioActividad' => 'required|date',
+            'codigoActividadPrincipal' => 'required',
+            'codigoActividadSecundaria' => 'nullable',
+            'codigoActividadTerciaria' => 'nullable',
             'numeroIngresosBrutos' => 'required|numeric|min:1',
 
             /* 'domicilioLegalCalle' => 'required',

@@ -124,7 +124,7 @@
 
         <input type="text" name="numeroIngresosBrutos" class="form-control" placeholder="Numero de Ingresos Brutos (*)" maxlength="9" value="{{ session()->get('empresa.numeroIngresosBrutos') }}"><br>
 
-        <hr>
+        {{-- <hr>
 
         <h2>Seccion A: Datos generales - Domicilios</h2>
         <h3>Domicilio Legal</h3>

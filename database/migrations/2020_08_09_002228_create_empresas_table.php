@@ -51,6 +51,8 @@ class CreateEmpresasTable extends Migration
             $table->string('domicilioActividadLocalidad');
             $table->integer('domicilioActividadCodigoPostal');
             $table->string('domicilioActividadEmail');
+            $table->string('domicilioActividadLatitud');    //Geolocalizacion
+            $table->string('domicilioActividadLongitud');   //Geolocalizacion
 
             $table->string('domicilioContactoApellido');
             $table->string('domicilioContactoNombre');

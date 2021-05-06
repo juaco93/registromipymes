@@ -13,7 +13,7 @@
     <h2>Por favor, indicanos tu CUIT:</h2>
      <form action="/registro" method="POST">
         @csrf
-     <input type="text" name="cuit" class="form-controll" placeholder="Ingrese CUIT" value="{{ session()->get('empresa.cuit') }}">
+     <input type="text" name="cuit" class="form-control" placeholder="Ingrese CUIT" maxlength="11" value="{{ session()->get('empresa.cuit') }}">
      <button type="submit" class="btn btn-primary">Continuar</button>
      </form>
 @endsection

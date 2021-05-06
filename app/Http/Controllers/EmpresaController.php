@@ -54,7 +54,7 @@ class EmpresaController extends Controller
     {
         // VALIDACIONES
         $validatedData = $request->validate([
-            'cuit' => 'required',
+            'cuit' => 'required|numeric|min:10000000000',
         ]);
 
         // Primera vez que entramos al paso, NO está creado el objeto Empresa

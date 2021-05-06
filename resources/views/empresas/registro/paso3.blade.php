@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
     <h1>Paso 3</h1>
-    <h3>Domicilio de la Actividad</h3>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -35,14 +34,14 @@
         <input type="text" name="domicilioActividadCodigoPostal" class="form-control" placeholder="Codigo Postal" maxlength="4" value="{{ session()->get('empresa.domicilioActividadCodigoPostal') }}"><br>
         <input type="text" name="domicilioActividadEmail" class="form-control" placeholder="Email" value="{{ session()->get('empresa.domicilioActividadEmail') }}"><br>
 
-        <h4>Latitud</h4>
-        <input type="text" name="latitud" id="latitud" class="form-controll" placeholder="Domicilio Actividad: Latitud" value="{{ session()->get('empresa.latitud') }}">
-        <h4>Longitud</h4>
-        <input type="text" name="longitud" id="longitud" class="form-controll" placeholder="Domicilio Actividad: Longitud" value="{{ session()->get('empresa.longitud') }}">
+        <div class="col-sm-10">
+            <input type="text" name="domicilioActividadLatitud" id="domicilioActividadLatitud" class="form-control" placeholder="Domicilio Actividad: Latitud" value="{{ session()->get('empresa.domicilioActividadLatitud') }}">
+            <input type="text" name="domicilioActividadLongitud" id="domicilioActividadLongitud" class="form-control" placeholder="Domicilio Actividad: Longitud" value="{{ session()->get('empresa.domicilioActividadLongitud') }}">
+        </div>
 
-        <br><br><br>
+        <br>
         <p>Marcá la ubicación haciendo click en el mapa:</p>
-        <div id="map" style="position: static; width: 400px; height: 400px"></div>
+        <div id="map" style="position: static; width: 400px; height: 400px"></div><br>
 
         <h3>Datos de contacto</h3>
         <input type="text" name="domicilioContactoApellido" class="form-control" placeholder="Apellido" maxlength="30" value="{{ session()->get('empresa.domicilioContactoApellido') }}"><br>

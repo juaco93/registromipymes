@@ -148,6 +148,8 @@ class EmpresaController extends Controller
             'domicilioActividadLocalidad' => 'required|string',
             'domicilioActividadCodigoPostal' => 'required|numeric|min:1',
             'domicilioActividadEmail' => 'required|email:rfc,dns',
+            'domicilioActividadLatitud' => 'required',
+            'domicilioActividadLongitud' => 'required',
 
             'domicilioContactoApellido' => 'required|string',
             'domicilioContactoNombre' => 'required|string',

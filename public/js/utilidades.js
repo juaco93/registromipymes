@@ -33,8 +33,8 @@ function initMap() {
       });
 
       //seteo de valores en los inputs
-      document.getElementById("latitud").value = e.latLng.lat();
-      document.getElementById("longitud").value = e.latLng.lng();
+      document.getElementById("domicilioActividadLatitud").value = e.latLng.lat();
+      document.getElementById("domicilioActividadLongitud").value = e.latLng.lng();
 
 
   });

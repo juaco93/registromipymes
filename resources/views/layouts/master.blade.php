@@ -65,4 +65,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="dashboard.js"></script></body>
     <script src="/js/utilidades.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh853L5txgKNT10lAix31Dp8Il89sNmMc&callback=initMap"></script>
 </html>

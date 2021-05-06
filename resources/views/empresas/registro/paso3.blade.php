@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <h1>Paso 3</h1>
+    <h3>Domicilio de la Actividad</h3>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -34,6 +35,15 @@
         <input type="text" name="domicilioActividadCodigoPostal" class="form-control" placeholder="Codigo Postal" maxlength="4" value="{{ session()->get('empresa.domicilioActividadCodigoPostal') }}"><br>
         <input type="text" name="domicilioActividadEmail" class="form-control" placeholder="Email" value="{{ session()->get('empresa.domicilioActividadEmail') }}"><br>
 
+        <h4>Latitud</h4>
+        <input type="text" name="latitud" id="latitud" class="form-controll" placeholder="Domicilio Actividad: Latitud" value="{{ session()->get('empresa.latitud') }}">
+        <h4>Longitud</h4>
+        <input type="text" name="longitud" id="longitud" class="form-controll" placeholder="Domicilio Actividad: Longitud" value="{{ session()->get('empresa.longitud') }}">
+
+        <br><br><br>
+        <p>Marcá la ubicación haciendo click en el mapa:</p>
+        <div id="map" style="position: static; width: 400px; height: 400px"></div>
+
         <h3>Datos de contacto</h3>
         <input type="text" name="domicilioContactoApellido" class="form-control" placeholder="Apellido" maxlength="30" value="{{ session()->get('empresa.domicilioContactoApellido') }}"><br>
         <input type="text" name="domicilioContactoNombre" class="form-control" placeholder="Nombre" maxlength="30" value="{{ session()->get('empresa.domicilioContactoNombre') }}"><br>
@@ -44,5 +54,6 @@
 
         <a type="button" href="/registro2" class="btn btn-warning">Vuelta al paso 2</a>
         <button type="submit" class="btn btn-primary">Continuar</button>
+
      </form>
 @endsection

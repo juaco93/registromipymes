@@ -106,31 +106,6 @@ class EmpresaController extends Controller
             'codigoActividadSecundaria' => 'nullable',
             'codigoActividadTerciaria' => 'nullable',
             'numeroIngresosBrutos' => 'required|numeric|min:1',
-
-            /* 'domicilioLegalCalle' => 'required',
-            'domicilioLegalNumero' => 'required',
-            'domicilioLegalPiso' => 'required',
-            'domicilioLegalDepto' => 'required',
-            'domicilioLegalTelefono' => 'required',
-            'domicilioLegalLocalidad' => 'required',
-            'domicilioLegalCodigoPostal' => 'required',
-
-            'domicilioActividadCalle' => 'required',
-            'domicilioActividadNumero' => 'required',
-            'domicilioActividadPiso' => 'required',
-            'domicilioActividadDepto' => 'required',
-            'domicilioActividadTelefono' => 'required',
-            'domicilioActividadLocalidad' => 'required',
-            'domicilioActividadCodigoPostal' => 'required',
-            'domicilioActividadEmail' => 'required',
-
-            'domicilioContactoApellido' => 'required',
-            'domicilioContactoNombre' => 'required',
-            'domicilioContactoCargoEnLaEmpresa' => 'required',
-            'domicilioContactoTelefono' => 'required',
-            'domicilioContactoDomicilioElectronico' => 'required',
-            'domicilioContactoEmailAlternativo' => 'required' */
-
         ]);
         if(empty($request->session()->get('empresa'))){
             $empresa = new Empresa();
@@ -148,26 +123,48 @@ class EmpresaController extends Controller
 
     public function createStep3(Request $request)
     {
-        $register = $request->session()->get('register');
+        $empresa = $request->session()->get('empresa');
 
-        return view('empresas.registro.paso3',compact('register'));
+        return view('empresas.registro.paso3',compact('empresa'));
     }
 
     public function PostcreateStep3(Request $request)
     {
-        /* VALIDACIONES
+        // VALIDACIONES
         $validatedData = $request->validate([
-            'description' => 'required|unique:registers',
+            'domicilioLegalCalle' => 'required|string',
+            'domicilioLegalNumero' => 'required|numeric|min:1',
+            'domicilioLegalPiso' => 'nullable|numeric|min:1',
+            'domicilioLegalDepto' => 'nullable|string',
+            'domicilioLegalTelefono' => 'required|numeric|min:1000000',
+            'domicilioLegalLocalidad' => 'required|string',
+            'domicilioLegalCodigoPostal' => 'required|numeric|min:1',
+
+            'domicilioActividadCalle' => 'required|string',
+            'domicilioActividadNumero' => 'required|numeric|min:1',
+            'domicilioActividadPiso' => 'nullable|numeric|min:1',
+            'domicilioActividadDepto' => 'nullable|string',
+            'domicilioActividadTelefono' => 'required|numeric|min:1000000',
+            'domicilioActividadLocalidad' => 'required|string',
+            'domicilioActividadCodigoPostal' => 'required|numeric|min:1',
+            'domicilioActividadEmail' => 'required|email:rfc,dns',
+
+            'domicilioContactoApellido' => 'required|string',
+            'domicilioContactoNombre' => 'required|string',
+            'domicilioContactoCargoEnLaEmpresa' => 'required|string',
+            'domicilioContactoTelefono' => 'required|numeric|min:1000000',
+            'domicilioContactoDomicilioElectronico' => 'required|email:rfc,dns',
+            'domicilioContactoEmailAlternativo' => 'required|email:rfc,dns'
         ]);
-        if(empty($request->session()->get('register'))){
-            $register = new \App\Register();
-            $register->fill($validatedData);
-            $request->session()->put('register', $register);
+        if(empty($request->session()->get('empresa'))){
+            $empresa = new Empresa();
+            $empresa->fill($validatedData);
+            $request->session()->put('empresa', $empresa);
         }else{
-            $register = $request->session()->get('register');
-            $register->fill($validatedData);
-            $request->session()->put('register', $register);
-        }*/
+            $empresa = $request->session()->get('empresa');
+            $empresa->fill($validatedData);
+            $request->session()->put('empresa', $empresa);
+        }
         return redirect('/registro4');
     }
 
@@ -177,9 +174,6 @@ class EmpresaController extends Controller
 
         return view('empresas.registro.paso3',compact('empresa'));
     }
-
-
-
 
     public function store(EmpresaStoreRequest $request)
     {

@@ -73,6 +73,7 @@
                         @endforeach
                     </select>
               </div>
+              </div>
         </fieldset>
         {{-- <div class="form-group row"> --}}
             <label for="fechaInicioActividad" class="form-check-label">Fecha de Inicio de Actividad (*)</label>

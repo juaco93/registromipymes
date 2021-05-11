@@ -174,7 +174,7 @@ class EmpresaController extends Controller
     {
         $empresa = $request->session()->get('empresa');
 
-        return view('empresas.registro.paso3',compact('empresa'));
+        return view('empresas.registro.paso4',compact('empresa'));
     }
 
     public function store(EmpresaStoreRequest $request)

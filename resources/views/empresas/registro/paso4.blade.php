@@ -10,7 +10,10 @@
         </ul>
     </div>
     @endif
-     <form action="/registro5" method="POST">
+    <h2>Seccion B: Características de la Actividad y Operatividad</h2>
+    <h3>Empresa CUIT Nº: {{ $empresa['cuit'] }}</h3>
+    <hr>
+     <form action="/registro4" method="POST">
         @csrf
      <input type="text" name="name" class="form-controll" placeholder="Ingrese nombre" value="{{ session()->get('registro.nombre') }}">
          <button type="submit" class="btn btn-primary">Continuar</button>

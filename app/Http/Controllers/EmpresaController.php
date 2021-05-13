@@ -190,7 +190,7 @@ class EmpresaController extends Controller
         return redirect('/');  //TODO: poner pagina de registro correcto
     }
 
-    public function livesearch(Request $request){
+    public function autocompleteCodigoActividad(Request $request){
         $term = $request->get('term');
         $data = DB::table('empresa_codigo_actividades')->where("descripcion", "LIKE", "%$term%")
                                                         ->orWhere("codigoActividad", "LIKE", "%$term%")

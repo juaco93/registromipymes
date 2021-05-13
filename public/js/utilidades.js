@@ -9,8 +9,8 @@ $(document).ready(function () {
     });
 
     $( "#codigoActividadPrincipal" ).autocomplete({
-        source: "livesearch",
-        minLength: 1,
+        source: "autocompleteCodigoActividad",
+        minLength: 2,
       });
 
 });

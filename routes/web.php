@@ -11,7 +11,7 @@ Route::post('/empresas', 'EmpresaController@store');
 Route::get('/','EmpresaController@registro');
 
 // RUTA PARA AUTOCMPLETAR LAS ACTIVIDADES DE EMPRESA
-Route::get('livesearch','EmpresaController@livesearch');
+Route::get('autocompleteCodigoActividad','EmpresaController@autocompleteCodigoActividad');
 
 //PASOS PARA EL REGISTRO
 Route::get('/registro','EmpresaController@createStep1');

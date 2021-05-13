@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('content')
-    <h1>Paso 4</h1>
+    <div class="form-group">
+    <h2>4 - Sección B: Características de la Actividad y Operatividad</h2>
+    <input type="range" class="form-control-range" id="step" min="1" max="6" value="4">
+  </div>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -10,7 +13,6 @@
         </ul>
     </div>
     @endif
-    <h2>Seccion B: Características de la Actividad y Operatividad</h2>
     <h3>Empresa CUIT Nº: {{ $empresa['cuit'] }}</h3>
     <hr>
      <form action="/registro4" method="POST">

@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('content')
-<h1>Paso 2</h1>
+<div class="form-group">
+    <h2>2 - Sección A: Datos del Titular</h2>
+    <input type="range" class="form-control-range" id="step" min="1" max="6" value="2">
+  </div>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -10,13 +13,24 @@
         </ul>
     </div>
     @endif
-    <h2>Seccion A: Datos generales - Datos del Titular</h2>
     <h3>Empresa CUIT Nº: {{ $empresa['cuit'] }}</h3>
      <form action="/registro2" method="POST">
         @csrf
-        <br><input type="text" name="titularApellido" class="form-control" maxlength="30" placeholder="Apellido (*)" value="{{ session()->get('empresa.titularApellido') }}"><br>
-        <input type="text" name="titularNombre" class="form-control" maxlength="30" placeholder="Nombre (*)" value="{{ session()->get('empresa.titularNombre') }}"><br>
-        <input type="text" name="titularDNI" class="form-control" maxlength="8" placeholder="DNI (*)" value="{{ session()->get('empresa.titularDNI') }}"><br>
+        <br>
+        <div class="form-row">
+            <div class="col">
+            <label for="titularApellido">Apellido (*)</label>
+            <input type="text" name="titularApellido" class="form-control" maxlength="30" placeholder="Apellido" value="{{ session()->get('empresa.titularApellido') }}"><br>
+            </div>
+            <div class="col">
+            <label for="titularNombre">Nombre (*)</label>
+            <input type="text" name="titularNombre" class="form-control" maxlength="30" placeholder="Nombre" value="{{ session()->get('empresa.titularNombre') }}"><br>
+            </div>
+            <div class="col">
+            <label for="titularDNI">DNI (*)</label>
+            <input type="text" name="titularDNI" class="form-control" maxlength="8" placeholder="DNI" value="{{ session()->get('empresa.titularDNI') }}"><br>
+            </div>
+        </div>
         {{-- <input type="text" name="titularSexo" class="form-control" placeholder="Sexo" value="{{ session()->get('empresa.titularSexo') }}"><br> --}}
         <select class="form-control" name="titularSexo" id="titularSexo">
             <option value="" selected disabled>Sexo del Titular (*)</option>
@@ -27,15 +41,47 @@
                    <option value={{$key}}>{{$genero}}</option>
                 @endif
             @endforeach
-        </select><br>
-        <input type="text" name="titularCalle" class="form-control" placeholder="Calle (*)" maxlength="50" value="{{ session()->get('empresa.titularCalle') }}"><br>
-        <input type="text" name="titularNumero" class="form-control" placeholder="Numero (*)" maxlength="3" value="{{ session()->get('empresa.titularNumero') }}"><br>
-        <input type="text" name="titularPiso" class="form-control" placeholder="Piso" maxlength="2" value="{{ session()->get('empresa.titularPiso') }}"><br>
-        <input type="text" name="titularDepto" class="form-control" placeholder="Depto" maxlength="4" value="{{ session()->get('empresa.titularDepto') }}"><br>
-        <input type="text" name="titularTelefonoPersonal" class="form-control" placeholder="Telefono Personal (*)" maxlength="25" value="{{ session()->get('empresa.titularTelefonoPersonal') }}"><br>
-        <input type="text" name="titularTelefonoEmpresa" class="form-control" placeholder="Telefono Empresa (*)" maxlength="25" value="{{ session()->get('empresa.titularTelefonoEmpresa') }}"><br>
-        <input type="text" name="titularLocalidad" class="form-control" placeholder="Localidad (*)" maxlength="30" value="{{ session()->get('empresa.titularLocalidad') }}"><br>
-        <input type="text" name="titularCodigoPostal" class="form-control" placeholder="Codigo Postal (*)" maxlength="4" value="{{ session()->get('empresa.titularCodigoPostal') }}"><br>
+        </select>
+        <br>
+        <div class="form-row">
+            <div class="col">
+            <label for="titularCalle">Calle (*)</label>
+            <input type="text" name="titularCalle" class="form-control" placeholder="Calle" maxlength="50" value="{{ session()->get('empresa.titularCalle') }}"><br>
+            </div>
+            <div class="col">
+            <label for="titularNumero">Número (*)</label>
+            <input type="text" name="titularNumero" class="form-control" placeholder="Numero" maxlength="3" value="{{ session()->get('empresa.titularNumero') }}"><br>
+            </div>
+            <div class="col">
+            <label for="titularPiso">Piso</label>
+            <input type="text" name="titularPiso" class="form-control" placeholder="Piso" maxlength="2" value="{{ session()->get('empresa.titularPiso') }}"><br>
+            </div>
+            <div class="col">
+            <label for="titularDepto">Dpto</label>
+            <input type="text" name="titularDepto" class="form-control" placeholder="Depto" maxlength="4" value="{{ session()->get('empresa.titularDepto') }}"><br>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+            <label for="titularTelefonoPersonal">Teléfono Personal (*)</label>
+            <input type="text" name="titularTelefonoPersonal" class="form-control" placeholder="Telefono Personal" maxlength="25" value="{{ session()->get('empresa.titularTelefonoPersonal') }}"><br>
+            </div>
+            <div class="col">
+            <label for="titularTelefonoEmpresa">Teléfono Empresa (*)</label>
+            <input type="text" name="titularTelefonoEmpresa" class="form-control" placeholder="Telefono Empresa (*)" maxlength="25" value="{{ session()->get('empresa.titularTelefonoEmpresa') }}"><br>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+            <label for="titularLocalidad">Localidad (*)</label>
+            <input type="text" name="titularLocalidad" class="form-control" placeholder="Localidad" maxlength="30" value="{{ session()->get('empresa.titularLocalidad') }}"><br>
+            </div>
+            <div class="col">
+            <label for="titularCodigoPostal">Código Postal (*)</label>
+            <input type="text" name="titularCodigoPostal" class="form-control" placeholder="Código Postal" maxlength="4" value="{{ session()->get('empresa.titularCodigoPostal') }}"><br>
+            </div>
+        </div>
+
         <fieldset class="form-group">
             <label for="inscripcionAfip" class="col-sm-4 control-label">Inscripción en AFIP (*)</label>
               <div class="col-sm-10">
@@ -77,8 +123,10 @@
         </fieldset>
         {{-- <div class="form-group row"> --}}
             <label for="fechaInicioActividad" class="form-check-label">Fecha de Inicio de Actividad (*)</label>
-            <div class="col-10">
+            <div class="form-row">
+                <div class="col">
                 <input class="form-control" type="date" value="{{ session()->get('empresa.fechaInicioActividad')}}" name="fechaInicioActividad"><br>
+                </div>
             </div>
         {{-- </div> --}}
         <fieldset class="form-group">

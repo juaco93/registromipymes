@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('content')
-    <h1>Paso 5</h1>
+<div class="form-group">
+    <h2>5 - Sección D: Financiamiento</h2>
+    <input type="range" class="form-control-range" id="step" min="1" max="6" value="5">
+  </div>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

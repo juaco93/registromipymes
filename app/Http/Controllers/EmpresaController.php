@@ -189,4 +189,18 @@ class EmpresaController extends Controller
 
         return redirect('/');  //TODO: poner pagina de registro correcto
     }
+
+    public function livesearch(Request $request){
+        $term = $request->get('term');
+        $data = DB::table('empresa_codigo_actividades')->where("descripcion", "LIKE", "%$term%")
+                                                        ->orWhere("codigoActividad", "LIKE", "%$term%")
+                                                        ->get();
+
+
+        foreach ($data as $result)
+        {
+            $results[] = ['value' => $result->codigoActividad.' - '.$result->descripcion];
+        }
+        return response()->json($results);
+    }
 }

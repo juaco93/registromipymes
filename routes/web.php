@@ -10,6 +10,9 @@ Route::get('/empresas/{empresa}','EmpresaController@show');
 Route::post('/empresas', 'EmpresaController@store');
 Route::get('/','EmpresaController@registro');
 
+// RUTA PARA AUTOCMPLETAR LAS ACTIVIDADES DE EMPRESA
+Route::get('livesearch','EmpresaController@livesearch');
+
 //PASOS PARA EL REGISTRO
 Route::get('/registro','EmpresaController@createStep1');
 Route::post('/registro', 'EmpresaController@PostcreateStep1');

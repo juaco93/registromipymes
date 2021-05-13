@@ -8,7 +8,13 @@ $(document).ready(function () {
            $('#selectMonotributo').hide();
     });
 
+    $( "#codigoActividadPrincipal" ).autocomplete({
+        source: "livesearch",
+        minLength: 1,
+      });
+
 });
+
 
 // MAPA DE GEOLOCALIZACION PARA DOMICILIO ACTIVIDAD
 let map;

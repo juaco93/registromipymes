@@ -129,11 +129,13 @@
                 </div>
             </div>
         {{-- </div> --}}
+
         <fieldset class="form-group">
             <label class="form-check-label" for="codigoActividadPrincipal">
                 Codigo de Actividad Principal (*):
             </label>
-            <select class="form-control" name="codigoActividadPrincipal" id="codigoActividadPrincipal">
+            <input class="form-control" type="text" name="codigoActividadPrincipal" id="codigoActividadPrincipal">
+            {{-- <select class="form-control" name="codigoActividadPrincipal" id="codigoActividadPrincipal">
                 <option value="" selected disabled>Elija una actividad principal</option>
                 @foreach ($codigosActividades as $actividad)
                     @if(session()->get('empresa.codigoActividadPrincipal') == $actividad->id)
@@ -142,7 +144,8 @@
                         <option value={{$actividad->id}}>{{$actividad->descripcion}}</option>
                     @endif
                 @endforeach
-            </select><br>
+            </select> --}}
+            <br>
             <label class="form-check-label" for="codigoActividadSecundaria">
                 Codigo de Actividad Secundario:
             </label>

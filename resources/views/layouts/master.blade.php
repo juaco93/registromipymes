@@ -64,5 +64,5 @@
       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="dashboard.js"></script></body>
     <script src="/js/utilidades.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh853L5txgKNT10lAix31Dp8Il89sNmMc&callback=initMap"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=XXXXXXXXXXX&callback=initMap"></script>
 </html>
